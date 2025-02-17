@@ -7,16 +7,17 @@ function preload(){
 }
 
 function setup(){
-    createCanvas(500,500);
+    createCanvas(800,800);
     angleMode(DEGREES);
     noLoop();
     cleanData();
-
+    charts.push(new BarChart(cleanedData,"Team","Goals",500,500,10,15,4,170,650));
 }
 
 function draw(){
     background(250);
-    
+    //make chart for goals
+    charts.forEach(chart => chart.render())
 }
 
 function cleanData(){
@@ -30,5 +31,7 @@ function cleanData(){
         cleanedData[i].Shots_On_Target = parseInt(cleanedData[i].Shots_On_Target),
         cleanedData[i].Possession = parseInt(cleanedData[i].Possession),
         cleanedData[i].Corners = parseInt(cleanedData[i].Corners)
+
+        console.log(cleanedData);
     }
 }
