@@ -2,13 +2,14 @@ let data;
 let cleanedData = [];
 let charts = [];
 let barChart = {}; // Object to store bar chart properties
+let horizontalBarChart = {};
 
 function preload(){
     data = loadTable('data/data.csv', 'csv', 'header');
 }
 
 function setup(){
-    createCanvas(800,800);
+    createCanvas(800,1600);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -40,6 +41,34 @@ function setup(){
     };
 
     charts.push(new BarChart(barChart));
+
+    horizontalBarChart = {
+        data: cleanedData,
+        xAxisValue: "Goals", 
+        yAxisValue: "Team", 
+        chartHeight: 500,
+        chartWidth: 500,
+        barWidth: 18,
+        margin: 15,
+        axisThickness: 3,
+        chartPosX: 170,
+        chartPosY: 1500, 
+        xAxisLabel: "Goals By Team",
+        yAxisLabel: "PL Teams 2024/25",
+        titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
+        textStrokeWeight: 1,
+        numberStrokeWeight: 1.5,
+        tickColour: "#050505",
+        tickStrokeWeight: 3,
+        tickStrokeLength: 20,
+        tickPadding: 10,
+        numTicks: 6,
+        tickTextColour: "#105195",
+        tickTextSize: 50,
+    };
+    
+    charts.push(new HorizontalBarChart(horizontalBarChart));
+    
 }
 
 function draw(){
