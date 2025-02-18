@@ -1,60 +1,62 @@
 let data;
 let cleanedData = [];
 let charts = [];
-
-let backgroundColour;
+let barChart = {}; // Object to store bar chart properties
 
 function preload(){
-    data = loadTable('data/data.csv', 'csv', 'header')
+    data = loadTable('data/data.csv', 'csv', 'header');
 }
 
-function setup() {
-    createCanvas(800, 800);
+function setup(){
+    createCanvas(800,800);
     angleMode(DEGREES);
     noLoop();
     cleanData();
 
-    backgroundColour = color(240);
-
-    let barChart = {
+    //Barchart object
+    barChart = {
         data: cleanedData,
         xAxisValue: "Team",
         yAxisValue: "Goals",
         chartHeight: 500,
         chartWidth: 500,
-        barWidth: 10,
+        barWidth: 18,
         margin: 15,
-        axisThickness: 4,
+        axisThickness: 3,
         chartPosX: 170,
         chartPosY: 650,
-        barColour: "#05ff48",
-        axisColour: "#070807",
-        barStrokeThickness: 0,
-        barStrokeColour: "#fafafa",
-        titleText: "Total goals by Premier League Team 2024/25",
-        titleXOffset: -30,
-        titleYOffset: 50,
-        titleWidth: 300,
-        titleSize: 20,
-        titleColour: "fafafa",
-        tickColour: "fafafa",
-        tickStrokeWeight: 1,
-        tickStrokeLength: 10,
+        xAxisLabel: "PL Teams 2024/25",
+        yAxisLabel: "Goals By Team",
+        titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
+        textStrokeWeight: 1,
+        numberStrokeWeight: 1.5,
+        tickColour: "#050505",
+        tickStrokeWeight: 3,
+        tickStrokeLength: 20,
         tickPadding: 10,
-        numTicks: 5,
-        tickTextColour: "#fafafa",
-        tickTextSize: 14,
-
-        labelPadding: 11,
-        labelRotation: 60,
-        labelTextSize: 12,
-        labelColour: "#fafafa"
+        numTicks: 6,
+        tickTextColour: "#105195",
+        tickTextSize: 50,
     };
 
     charts.push(new BarChart(barChart));
 }
 
 function draw(){
-    background(backgroundColour);
-    barCharts.forEach((barChart) => barChart.render())
+    background(204, 0, 204);
+    charts.forEach(chart => chart.render());
+}
+
+function cleanData(){
+    for(let i = 0; i < data.rows.length; i++){
+        cleanedData.push(data.rows[i].obj);
+    }
+
+    for(let i = 0; i < cleanedData.length; i++){
+        cleanedData[i].Goals = parseInt(cleanedData[i].Goals);
+        cleanedData[i].Shots = parseInt(cleanedData[i].Shots);
+        cleanedData[i].Shots_On_Target = parseInt(cleanedData[i].Shots_On_Target);
+        cleanedData[i].Possession = parseInt(cleanedData[i].Possession);
+        cleanedData[i].Corners = parseInt(cleanedData[i].Corners);
+    }
 }
