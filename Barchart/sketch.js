@@ -1,15 +1,16 @@
 let data;
 let cleanedData = [];
 let charts = [];
-let barChart = {}; // Object to store bar chart properties
-let horizontalBarChart = {};
+let barChart = {}; //original barchart object
+let horizontalBarChart = {}; //horizontal bar chart object
+let stackedBarChart = {}; // stacked bar chart object
 
 function preload(){
     data = loadTable('data/data.csv', 'csv', 'header');
 }
 
 function setup(){
-    createCanvas(800,1600);
+    createCanvas(1600,1600);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -69,6 +70,32 @@ function setup(){
     
     charts.push(new HorizontalBarChart(horizontalBarChart));
     
+    stackedBarChart = {
+        data: cleanedData,
+        xAxisValue: "Team", 
+        yAxisValues: ["Possession", "Goals"], 
+        chartHeight: 500,
+        chartWidth: 500,
+        barWidth: 18,
+        margin: 15,
+        axisThickness: 3,
+        chartPosX: 920,
+        chartPosY: 650, 
+        xAxisLabel: "PL Teams 2024/25",
+        yAxisLabel: "Goals and Possession",
+        titleLabel: "Premier League Teams Goals and Possession",
+        textStrokeWeight: 1,
+        numberStrokeWeight: 1.5,
+        tickColour: "#050505",
+        tickStrokeWeight: 3,
+        tickStrokeLength: 20,
+        tickPadding: 10,
+        numTicks: 6,
+        tickTextColour: "#105195",
+        tickTextSize: 50,
+    };
+
+    charts.push(new StackedBarChart(stackedBarChart));
 }
 
 function draw(){
