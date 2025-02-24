@@ -10,7 +10,7 @@ function preload(){
 }
 
 function setup(){
-    createCanvas(1600,1600);
+    createCanvas(4000,4000);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -43,6 +43,33 @@ function setup(){
 
     charts.push(new BarChart(barChart));
 
+    barChart2 = {
+        data: cleanedData,
+        xAxisValue: "Team",
+        yAxisValue: "Shots",
+        chartHeight: 500,
+        chartWidth: 500,
+        barWidth: 18,
+        margin: 15,
+        axisThickness: 3,
+        chartPosX: 170,
+        chartPosY: 1500,
+        xAxisLabel: "PL Teams 2024/25",
+        yAxisLabel: "Shots By Team",
+        titleLabel: "Total Shots Taken By Premier League Teams 2024/25",
+        textStrokeWeight: 1,
+        numberStrokeWeight: 1.5,
+        tickColour: "#050505",
+        tickStrokeWeight: 3,
+        tickStrokeLength: 20,
+        tickPadding: 10,
+        numTicks: 6,
+        tickTextColour: "#105195",
+        tickTextSize: 50,
+    };
+
+    charts.push(new BarChart(barChart2));
+
     horizontalBarChart = {
         data: cleanedData,
         xAxisValue: "Goals", 
@@ -53,7 +80,7 @@ function setup(){
         margin: 15,
         axisThickness: 3,
         chartPosX: 170,
-        chartPosY: 1500, 
+        chartPosY: 2200, 
         xAxisLabel: "Goals By Team",
         yAxisLabel: "PL Teams 2024/25",
         titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
@@ -69,6 +96,33 @@ function setup(){
     };
     
     charts.push(new HorizontalBarChart(horizontalBarChart));
+
+    horizontalBarChart2 = {
+        data: cleanedData,
+        xAxisValue: "Shots_On_Target", 
+        yAxisValue: "Team", 
+        chartHeight: 500,
+        chartWidth: 500,
+        barWidth: 18,
+        margin: 15,
+        axisThickness: 3,
+        chartPosX: 170,
+        chartPosY: 2900, 
+        xAxisLabel: "Shots On Target By Team",
+        yAxisLabel: "PL Teams 2024/25",
+        titleLabel: "Total Shots On Target By Premier League Teams 2024/25",
+        textStrokeWeight: 1,
+        numberStrokeWeight: 1.5,
+        tickColour: "#050505",
+        tickStrokeWeight: 3,
+        tickStrokeLength: 20,
+        tickPadding: 10,
+        numTicks: 6,
+        tickTextColour: "#105195",
+        tickTextSize: 50,
+    };
+    
+    charts.push(new HorizontalBarChart(horizontalBarChart2));
     
     stackedBarChart = {
         data: cleanedData,
