@@ -4,13 +4,14 @@ let charts = [];
 let barChart = {}; //original barchart object
 let horizontalBarChart = {}; //horizontal bar chart object
 let stackedBarChart = {}; // stacked bar chart object
+let pieChart = {};
 
 function preload(){
     data = loadTable('data/data.csv', 'csv', 'header');
 }
 
 function setup(){
-    createCanvas(4000,4000);
+    createCanvas(3000,3000);
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -27,6 +28,7 @@ function setup(){
         axisThickness: 3,
         chartPosX: 170,
         chartPosY: 650,
+        startBar: -1,
         xAxisLabel: "PL Teams 2024/25",
         yAxisLabel: "Goals By Team",
         titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
@@ -54,6 +56,7 @@ function setup(){
         axisThickness: 3,
         chartPosX: 170,
         chartPosY: 1500,
+        startBar: -1,
         xAxisLabel: "PL Teams 2024/25",
         yAxisLabel: "Shots By Team",
         titleLabel: "Total Shots Taken By Premier League Teams 2024/25",
@@ -79,8 +82,9 @@ function setup(){
         barWidth: 18,
         margin: 15,
         axisThickness: 3,
-        chartPosX: 170,
+        chartPosX: 180,
         chartPosY: 2200, 
+        startBar: 2,
         xAxisLabel: "Goals By Team",
         yAxisLabel: "PL Teams 2024/25",
         titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
@@ -106,8 +110,9 @@ function setup(){
         barWidth: 18,
         margin: 15,
         axisThickness: 3,
-        chartPosX: 170,
+        chartPosX: 180,
         chartPosY: 2900, 
+        startBar: 2,
         xAxisLabel: "Shots On Target By Team",
         yAxisLabel: "PL Teams 2024/25",
         titleLabel: "Total Shots On Target By Premier League Teams 2024/25",
@@ -135,6 +140,7 @@ function setup(){
         axisThickness: 3,
         chartPosX: 920,
         chartPosY: 650, 
+        startBar: -1,
         xAxisLabel: "PL Teams 2024/25",
         yAxisLabel: "Goals and Possession",
         titleLabel: "Premier League Teams Goals and Possession",
@@ -150,6 +156,21 @@ function setup(){
     };
 
     charts.push(new StackedBarChart(stackedBarChart));
+
+    pieChart = {
+        data: cleanedData,
+        xAxisValue: "Team",  
+        yAxisValue: "Corners",  
+        //titleLabel: "PL Corners Pie Chart",
+        textStrokeWeight: 1,
+        chartHeight: 450,
+        chartWidth: 450,
+        axisThickness: 3,
+        chartPosX: 300,  
+        chartPosY: 600,
+    };
+
+    charts.push(new PieChart(pieChart));
 }
 
 function draw(){

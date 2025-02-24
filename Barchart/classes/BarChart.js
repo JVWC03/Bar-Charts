@@ -17,6 +17,7 @@ class BarChart {
         this.chartPosY = obj.chartPosY;
         this.xAxisLabel = obj.xAxisLabel;
         this.yAxisLabel = obj.yAxisLabel;
+        this.startBar = obj.startBar;
 
         //title
         this.titleLabel = obj.titleLabel;
@@ -66,7 +67,7 @@ class BarChart {
             let xPosition = (this.barWidth + this.gap) * i;
             fill(this.barColour);
             noStroke();
-            rect(xPosition, 0, this.barWidth, -this.data[i][this.yAxisValue] * this.scaler);
+            rect(xPosition, this.startBar, this.barWidth, -this.data[i][this.yAxisValue] * this.scaler);
 
             fill(this.axisTextColour);
             noStroke();

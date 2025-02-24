@@ -17,6 +17,7 @@ class HorizontalBarChart {
         this.chartPosY = obj.chartPosY;
         this.xAxisLabel = obj.xAxisLabel;
         this.yAxisLabel = obj.yAxisLabel;
+        this.startBar = obj.startBar;
 
         //title
         this.titleLabel = obj.titleLabel;
@@ -40,7 +41,7 @@ class HorizontalBarChart {
 
         //colours
         this.axisColour = color(13, 13, 11);
-        this.barColour = color(255, 128, 0);
+        this.barColour = color(67, 246, 246);
         this.axisTextColour = color(0, 0, 0);
     }
 
@@ -67,7 +68,7 @@ class HorizontalBarChart {
             let yPosition = -((this.barWidth + this.gap) * i);
             fill(this.barColour);
             noStroke();
-            rect(0, yPosition - this.barWidth, this.data[i][this.xAxisValue] * this.scaler, this.barWidth);
+            rect(this.startBar, yPosition - this.barWidth, this.data[i][this.xAxisValue] * this.scaler, this.barWidth);
 
             fill(this.axisTextColour);
             noStroke();

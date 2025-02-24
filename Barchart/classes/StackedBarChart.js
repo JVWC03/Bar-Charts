@@ -17,6 +17,7 @@ class StackedBarChart {
         this.chartPosY = obj.chartPosY;
         this.xAxisLabel = obj.xAxisLabel;
         this.yAxisLabel = obj.yAxisLabel;
+        this.startBar = obj.startBar;
 
         //title
         this.titleLabel = obj.titleLabel;
@@ -81,7 +82,7 @@ class StackedBarChart {
                 fill(this.barColours[j]);
                 noStroke();
 
-                rect(0, 0, this.barWidth, -this.data[i][this.yAxisValues[j]] * this.scaler);
+                rect(0, this.startBar, this.barWidth, -this.data[i][this.yAxisValues[j]] * this.scaler);
                 translate(0, -this.data[i][this.yAxisValues[j]] * this.scaler - 1)
             }
             pop();
