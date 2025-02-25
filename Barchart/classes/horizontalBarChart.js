@@ -35,6 +35,9 @@ class HorizontalBarChart {
         this.tickTextColour = obj.tickTextColour;
         this.tickTextSize = obj.tickTextSize || 50;
 
+        //font
+        this.font = obj.font;
+
         //calculations
         //calculates gap between bars using relevant formula
         this.gap = (this.chartHeight - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
@@ -48,6 +51,8 @@ class HorizontalBarChart {
     }
 
     render() {
+        //font
+        textFont(this.font);
         //title
         fill(0);
         textSize(24);
@@ -62,6 +67,7 @@ class HorizontalBarChart {
         noFill();
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
+        //draws the axis
         line(0, 0, this.chartWidth, 0);
         line(0, 0, 0, -this.chartHeight);
 
@@ -74,12 +80,14 @@ class HorizontalBarChart {
             //sets colour of bars
             fill(this.barColour);
             noStroke();
+            //draws bar from y-axis across
             rect(this.startBar, yPosition - this.barWidth, this.data[i][this.xAxisValue] * this.scaler, this.barWidth);
 
             fill(this.axisTextColour);
             noStroke();
             textAlign(RIGHT, CENTER);
             textSize(10);
+            //displays team names (yAxisValue) along the y-axis
             text(this.data[i][this.yAxisValue], -this.tickPadding, yPosition - this.barWidth / 2);
         }
         pop();

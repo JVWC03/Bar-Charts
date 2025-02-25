@@ -41,6 +41,9 @@ class BarChart {
         //calculates the scaler by dividing height of the chart by the max value in the yAxisValue in this case 'Goals'
         this.scaler = this.chartHeight / (max(this.data.map(row => row[this.yAxisValue])));
 
+        //font
+        this.font = obj.font;
+
         //colours
         this.axisColour = color(13,13,11);
         this.barColour = color(255, 128, 0);
@@ -48,6 +51,8 @@ class BarChart {
     }
 
     render(){
+        //font
+        textFont(this.font);
         //title
         fill(0); 
         textSize(24);
@@ -62,7 +67,9 @@ class BarChart {
         noFill();
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
+        //draws the y-axis
         line(0, 0, 0, -this.chartHeight);
+        //draws the x-axis
         line(0, 0, this.chartWidth, 0);
 
         //draws the bars
@@ -74,6 +81,7 @@ class BarChart {
             let xPosition = (this.barWidth + this.gap) * i;
             fill(this.barColour);
             noStroke();
+            //draws bars from x-axis upwards
             rect(xPosition, this.startBar, this.barWidth, -this.data[i][this.yAxisValue] * this.scaler);
 
             //writes the axis labels for the x axis in this case 'Teams'

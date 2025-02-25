@@ -26,6 +26,9 @@ class PieChart {
         //colours + design
         this.axisTextColour = color(0, 0, 0);
         this.pieStroke = obj.pieStroke || 1;
+
+        //font
+        this.font = obj.font;
         
         //array that maps all teams corners
         this.cornersArray = this.data.map(row => row.Corners);
@@ -40,6 +43,8 @@ class PieChart {
     }
    
     render() {      
+        //font
+        textFont(this.font);
         //title
         fill(0);
         textSize(24);
@@ -55,10 +60,14 @@ class PieChart {
         for (let i = 0; i < this.cornersArray.length; i++) {
             fill(random(255), 120, 23);
             stroke(this.pieStroke);
+            //find the end of eachslice
             let angleEnd = (this.cornersArray[i] / this.total) * 360;
+            //draw each pie chart slice
             arc(0, 0, 600, 600, this.angleStart, angleEnd, PIE);
             
+            //calculate middle angle for text in slices
             let middleAngle = (angleEnd-this.angleStart)/2;
+            //find x and y text positions
             let xPosition = 150*cos(middleAngle);
             let yPosition = 150*sin(middleAngle)
  
@@ -77,13 +86,16 @@ class PieChart {
                 rotate(middleAngle)
             }
            
+            //align text
             textAlign(LEFT,CENTER)
             textSize(15)
             text(this.data[i][this.xAxisValue], 0, 0);
  
             pop()
+            //set start angle for new slice
             rotate(angleEnd);
  
+            //track total angle covered
             this.trackAngle = this.trackAngle + angleEnd;
         }
         pop(); 

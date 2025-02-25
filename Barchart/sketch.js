@@ -1,4 +1,5 @@
 let data;
+let newFont;
 let cleanedData = []; // array to store data from csv cleaned in cleanData
 let charts = []; // array to store created charts using charts.push
 let barChart = {}; //original barchart object
@@ -7,6 +8,7 @@ let stackedBarChart = {}; // stacked bar chart object
 let pieChart = {}; // pie chart object
 
 function preload(){
+    newFont = loadFont('static/Roboto-Bold.ttf')
     //loads in the data from the csv
     data = loadTable('data/data.csv', 'csv', 'header');
 }
@@ -22,6 +24,7 @@ function setup(){
     //Barchart object
     barChart = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Team",
         yAxisValue: "Goals",
         chartHeight: 500,
@@ -51,6 +54,7 @@ function setup(){
 
     barChart2 = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Team",
         yAxisValue: "Shots",
         chartHeight: 500,
@@ -80,6 +84,7 @@ function setup(){
 
     horizontalBarChart = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Possession", 
         yAxisValue: "Team", 
         chartHeight: 500,
@@ -109,6 +114,7 @@ function setup(){
 
     horizontalBarChart2 = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Shots_On_Target", 
         yAxisValue: "Team", 
         chartHeight: 500,
@@ -138,6 +144,7 @@ function setup(){
     
     stackedBarChart = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Team", 
         yAxisValues: ["Possession", "Goals"], 
         chartHeight: 500,
@@ -167,6 +174,7 @@ function setup(){
 
     pieChart = {
         data: cleanedData,
+        font: newFont,
         xAxisValue: "Team",  
         yAxisValue: "Corners",  
         titleLabel: "Corners By Premier League Teams 2024/25",

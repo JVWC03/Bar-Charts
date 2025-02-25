@@ -43,14 +43,19 @@ class StackedBarChart {
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
         this.scaler = round(this.chartHeight / this.total, 0); 
 
+        //font
+        this.font = obj.font;
+
         //colours
         this.axisColour = color(13, 13, 11);
-        //Possession (255, 128, 0)-Orange -> Goals (235, 247, 10) Yellow
-        this.barColours = [color(255, 128, 0), color(235, 247, 10)];
+        //Possession (235, 247, 10) Yellow -> Goals 
+        this.barColours = [color(235, 247, 10), color(255, 21, 21)];
         this.axisTextColour = color(0, 0, 0);
     }
 
     render() {
+        //font
+        textFont(this.font);
         //title
         fill(0);
         textSize(24);
