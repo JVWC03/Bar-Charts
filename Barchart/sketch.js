@@ -12,8 +12,8 @@ function preload(){
 }
 
 function setup(){
-    //sets canvas to 3000 pixels wide and high
-    createCanvas(3000,3000);
+    //sets canvas to 2300 pixels wide and 3500 high
+    createCanvas(2300,3500);
     //sets angle mode to degrees
     angleMode(DEGREES);
     noLoop();
@@ -80,7 +80,7 @@ function setup(){
 
     horizontalBarChart = {
         data: cleanedData,
-        xAxisValue: "Goals", 
+        xAxisValue: "Possession", 
         yAxisValue: "Team", 
         chartHeight: 500,
         chartWidth: 500,
@@ -88,11 +88,11 @@ function setup(){
         margin: 15,
         axisThickness: 3,
         chartPosX: 180,
-        chartPosY: 2200, 
+        chartPosY: 2300, 
         startBar: 2,
-        xAxisLabel: "Goals By Team",
+        xAxisLabel: "Possession By Team",
         yAxisLabel: "PL Teams 2024/25",
-        titleLabel: "Total Goals Scored By Premier League Teams 2024/25",
+        titleLabel: "Average Possession By Game Premier League Teams 2024/25",
         textStrokeWeight: 1,
         numberStrokeWeight: 1.5,
         tickColour: "#050505",
@@ -117,7 +117,7 @@ function setup(){
         margin: 15,
         axisThickness: 3,
         chartPosX: 180,
-        chartPosY: 2900, 
+        chartPosY: 3000, 
         startBar: 2,
         xAxisLabel: "Shots On Target By Team",
         yAxisLabel: "PL Teams 2024/25",
@@ -169,13 +169,14 @@ function setup(){
         data: cleanedData,
         xAxisValue: "Team",  
         yAxisValue: "Corners",  
-        titleLabel: "Corners by Premier League Team 2024/25",
+        titleLabel: "Corners By Premier League Teams 2024/25",
         textStrokeWeight: 1,
+        pieStroke: 0,
         chartHeight: 450,
         chartWidth: 450,
         axisThickness: 3,
         chartPosX: 300,  
-        chartPosY: 800,
+        chartPosY: 700,
     };
 
     //creates an instance of my pie chatr class and stores it in charts array

@@ -6,34 +6,34 @@ class BarChart {
         this.yAxisValue = obj.yAxisValue;
 
         //size
-        this.chartHeight = obj.chartHeight;
-        this.chartWidth = obj.chartWidth;
-        this.barWidth = obj.barWidth;
-        this.margin = obj.margin;
-        this.axisThickness = obj.axisThickness;
+        this.chartHeight = obj.chartHeight || 500;
+        this.chartWidth = obj.chartWidth || 500;
+        this.barWidth = obj.barWidth || 15;
+        this.margin = obj.margin || 10;
+        this.axisThickness = obj.axisThickness || 1;
 
         //positioning
-        this.chartPosX = obj.chartPosX;
-        this.chartPosY = obj.chartPosY;
+        this.chartPosX = obj.chartPosX || 170;
+        this.chartPosY = obj.chartPosY || 650;
         this.xAxisLabel = obj.xAxisLabel;
         this.yAxisLabel = obj.yAxisLabel;
-        this.startBar = obj.startBar;
+        this.startBar = obj.startBar || 0;
 
         //title
         this.titleLabel = obj.titleLabel;
 
         //text
-        this.textStrokeWeight = obj.textStrokeWeight;
-        this.numberStrokeWeight = obj.numberStrokeWeight;
+        this.textStrokeWeight = obj.textStrokeWeight || 1;
+        this.numberStrokeWeight = obj.numberStrokeWeight || 1;
 
         //ticks
         this.tickColour = obj.tickColour;
-        this.tickStrokeWeight = obj.tickStrokeWeight;
-        this.tickStrokeLength = obj.tickStrokeLength;
-        this.tickPadding = obj.tickPadding,
-        this.numTicks = obj.numTicks,
-        this.tickTextColour = obj.tickTextColour,
-        this.tickTextSize = obj.tickTextSize
+        this.tickStrokeWeight = obj.tickStrokeWeight || 3;
+        this.tickStrokeLength = obj.tickStrokeLength || 10;
+        this.tickPadding = obj.tickPadding || 10;
+        this.numTicks = obj.numTicks || 5;
+        this.tickTextColour = obj.tickTextColour;
+        this.tickTextSize = obj.tickTextSize || 50;
 
         //calculations
         //calculates gap between bars using relevant formula

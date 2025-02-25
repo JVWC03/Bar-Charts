@@ -6,34 +6,34 @@ class StackedBarChart {
         this.yAxisValues = obj.yAxisValues;
 
         //size
-        this.chartHeight = obj.chartHeight;
-        this.chartWidth = obj.chartWidth;
-        this.barWidth = obj.barWidth;
-        this.margin = obj.margin;
-        this.axisThickness = obj.axisThickness;
+        this.chartHeight = obj.chartHeight || 500;
+        this.chartWidth = obj.chartWidth || 500;
+        this.barWidth = obj.barWidth || 15;
+        this.margin = obj.margin || 10;
+        this.axisThickness = obj.axisThickness || 1;
 
         //positioning
-        this.chartPosX = obj.chartPosX;
-        this.chartPosY = obj.chartPosY;
+        this.chartPosX = obj.chartPosX || 170;
+        this.chartPosY = obj.chartPosY || 650;
         this.xAxisLabel = obj.xAxisLabel;
         this.yAxisLabel = obj.yAxisLabel;
-        this.startBar = obj.startBar;
+        this.startBar = obj.startBar || 0;
 
         //title
         this.titleLabel = obj.titleLabel;
 
         //text
-        this.textStrokeWeight = obj.textStrokeWeight;
-        this.numberStrokeWeight = obj.numberStrokeWeight;
+        this.textStrokeWeight = obj.textStrokeWeight || 1;
+        this.numberStrokeWeight = obj.numberStrokeWeight || 1;
 
         //ticks
         this.tickColour = obj.tickColour;
-        this.tickStrokeWeight = obj.tickStrokeWeight;
-        this.tickStrokeLength = obj.tickStrokeLength;
-        this.tickPadding = obj.tickPadding;
-        this.numTicks = obj.numTicks;
+        this.tickStrokeWeight = obj.tickStrokeWeight || 3;
+        this.tickStrokeLength = obj.tickStrokeLength || 10;
+        this.tickPadding = obj.tickPadding || 10;
+        this.numTicks = obj.numTicks || 5;
         this.tickTextColour = obj.tickTextColour;
-        this.tickTextSize = obj.tickTextSize;
+        this.tickTextSize = obj.tickTextSize || 50;
 
         this.possession = this.data.map(el => el.Possession); 
         this.goals = this.data.map(el => el.Goals); 
@@ -45,6 +45,7 @@ class StackedBarChart {
 
         //colours
         this.axisColour = color(13, 13, 11);
+        //Possession (255, 128, 0)-Orange -> Goals (235, 247, 10) Yellow
         this.barColours = [color(255, 128, 0), color(235, 247, 10)];
         this.axisTextColour = color(0, 0, 0);
     }
@@ -68,8 +69,9 @@ class StackedBarChart {
         push();
         translate(this.margin, 0);
 
-        //horizontal loop
+        //horizontal loop - 
         for (let i = 0; i < this.data.length; i++) {
+            //calculates the position of each bar on the x-axis
             let xPosition = (this.barWidth + this.gap) * i;
 
             push()
@@ -81,12 +83,15 @@ class StackedBarChart {
                 fill(this.barColours[j]);
                 noStroke();
 
+                //draws each bar
                 rect(0, this.startBar, this.barWidth, -this.data[i][this.yAxisValues[j]] * this.scaler);
+                //moves each bar on top of previous bar with small gap between
                 translate(0, -this.data[i][this.yAxisValues[j]] * this.scaler - 1)
             }
             pop();
             pop()
 
+            //write x-axis text - team names
             fill(this.axisTextColour);
             noStroke();
             textAlign(LEFT, CENTER);
@@ -94,7 +99,7 @@ class StackedBarChart {
 
             push()
             translate(xPosition + (this.barWidth/2), 10)
-            rotate(45)
+            rotate(90)
             text(this.data[i][this.xAxisValue], 0, 0);
             pop()
         }
@@ -104,7 +109,7 @@ class StackedBarChart {
         noStroke();
         textSize(30);
         textAlign(CENTER, CENTER);
-        text(this.xAxisLabel, this.chartWidth / 2, 120);
+        text(this.xAxisLabel, this.chartWidth / 2, 150);
 
         //y-Axis-Label
         push();
