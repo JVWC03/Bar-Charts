@@ -1,17 +1,20 @@
 let data;
-let cleanedData = [];
-let charts = [];
+let cleanedData = []; // array to store data from csv cleaned in cleanData
+let charts = []; // array to store created charts using charts.push
 let barChart = {}; //original barchart object
 let horizontalBarChart = {}; //horizontal bar chart object
 let stackedBarChart = {}; // stacked bar chart object
-let pieChart = {};
+let pieChart = {}; // pie chart object
 
 function preload(){
+    //loads in the data from the csv
     data = loadTable('data/data.csv', 'csv', 'header');
 }
 
 function setup(){
+    //sets canvas to 3000 pixels wide and high
     createCanvas(3000,3000);
+    //sets angle mode to degrees
     angleMode(DEGREES);
     noLoop();
     cleanData();
@@ -43,6 +46,7 @@ function setup(){
         tickTextSize: 50,
     };
 
+    //creates an instance of my barchart class and stores it in charts array
     charts.push(new BarChart(barChart));
 
     barChart2 = {
@@ -71,6 +75,7 @@ function setup(){
         tickTextSize: 50,
     };
 
+    //creates another instance of my barchart class and stores it in charts array
     charts.push(new BarChart(barChart2));
 
     horizontalBarChart = {
@@ -99,6 +104,7 @@ function setup(){
         tickTextSize: 50,
     };
     
+    //creates an instance of my horizontal barchart class and stores it in charts array
     charts.push(new HorizontalBarChart(horizontalBarChart));
 
     horizontalBarChart2 = {
@@ -127,6 +133,7 @@ function setup(){
         tickTextSize: 50,
     };
     
+    //creates another instance of my barchart class and stores it in charts array
     charts.push(new HorizontalBarChart(horizontalBarChart2));
     
     stackedBarChart = {
@@ -155,34 +162,41 @@ function setup(){
         tickTextSize: 50,
     };
 
+    //creates an instance of my stackesd barchart class and stores it in charts array
     charts.push(new StackedBarChart(stackedBarChart));
 
     pieChart = {
         data: cleanedData,
         xAxisValue: "Team",  
         yAxisValue: "Corners",  
-        //titleLabel: "PL Corners Pie Chart",
+        titleLabel: "Corners by Premier League Team 2024/25",
         textStrokeWeight: 1,
         chartHeight: 450,
         chartWidth: 450,
         axisThickness: 3,
         chartPosX: 300,  
-        chartPosY: 600,
+        chartPosY: 800,
     };
 
+    //creates an instance of my pie chatr class and stores it in charts array
     charts.push(new PieChart(pieChart));
 }
 
 function draw(){
+    //sets background colour to purple/magenta colour
     background(204, 0, 204);
+    //draws each chart on the canvas by calling the render
     charts.forEach(chart => chart.render());
 }
 
+//function to clean csv data
 function cleanData(){
+    //loops through each row in csv and stores in cleanedData array
     for(let i = 0; i < data.rows.length; i++){
         cleanedData.push(data.rows[i].obj);
     }
 
+    //converts strings to integers for each data type goals, shots etc
     for(let i = 0; i < cleanedData.length; i++){
         cleanedData[i].Goals = parseInt(cleanedData[i].Goals);
         cleanedData[i].Shots = parseInt(cleanedData[i].Shots);

@@ -38,9 +38,8 @@ class StackedBarChart {
         this.possession = this.data.map(el => el.Possession); 
         this.goals = this.data.map(el => el.Goals); 
 
-        this.total = Math.max(...this.possession.map((num, i) => num + this.goals[i])); 
-
         //calculations
+        this.total = Math.max(...this.possession.map((num, i) => num + this.goals[i])); 
         this.gap = (this.chartWidth - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
         this.scaler = round(this.chartHeight / this.total, 0); 
 

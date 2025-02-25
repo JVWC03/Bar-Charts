@@ -24,7 +24,7 @@ class PieChart {
         this.maxValue = 0;
 
         //colours
-        this.textColour = color(0, 0, 0);
+        this.axisTextColour = color(0, 0, 0);
         
         //array that maps all teams corners
         this.cornersArray = this.data.map(row => row.Corners);
@@ -38,11 +38,12 @@ class PieChart {
    
     render() {      
         //title
-        // fill(0);
-        // textSize(24);
-        // textStyle(BOLD);
-        // textAlign(CENTER, CENTER);
-        // text(this.titleLabel, this.chartPosX + this.chartWidth / 2, this.chartPosY - this.chartHeight - 40);   
+        fill(0);
+        textSize(24);
+        textStyle(BOLD);
+        textAlign(CENTER, CENTER);
+        noStroke();
+        text(this.titleLabel, 310, this.chartPosY - this.chartHeight + 60);   
 
         push(); 
         translate(this.chartPosX, this.chartPosY);
@@ -58,7 +59,7 @@ class PieChart {
             let yPosition = 150*sin(midAngle)
  
             //text
-            fill(this.textColour)
+            fill(this.axisTextColour)
             noStroke()
             textSize(25);
             push();
@@ -76,7 +77,7 @@ class PieChart {
             text(this.data[i][this.xAxisValue], 0, 0);
  
             pop()
-            rotate (angleEnd);
+            rotate(angleEnd);
  
             this.trackAngle = this.trackAngle + angleEnd;
         }

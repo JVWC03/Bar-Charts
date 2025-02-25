@@ -36,7 +36,9 @@ class HorizontalBarChart {
         this.tickTextSize = obj.tickTextSize;
 
         //calculations
+        //calculates gap between bars using relevant formula
         this.gap = (this.chartHeight - (this.data.length * this.barWidth) - (this.margin * 2)) / (this.data.length - 1);
+        //calculates the scaler by dividing width of the chart by the max value in the xAxisValue in this case 'Goals'
         this.scaler = this.chartWidth / (max(this.data.map(row => row[this.xAxisValue])));
 
         //colours
@@ -53,7 +55,9 @@ class HorizontalBarChart {
         textAlign(CENTER, CENTER);
         text(this.titleLabel, this.chartPosX + this.chartWidth / 2, this.chartPosY - this.chartHeight - 40);
 
+        //starts a new chart drawing
         push();
+        //pushes co-ordinate system to set chart positions
         translate(this.chartPosX, this.chartPosY);
         noFill();
         stroke(this.axisColour);
@@ -61,11 +65,13 @@ class HorizontalBarChart {
         line(0, 0, this.chartWidth, 0);
         line(0, 0, 0, -this.chartHeight);
 
+        //draws the bars
         push();
         translate(0, -this.margin);
         for (let i = 0; i < this.data.length; i++) {
-            //BOMDAS
+            //BOMDAS - do brackets first 
             let yPosition = -((this.barWidth + this.gap) * i);
+            //sets colour of bars
             fill(this.barColour);
             noStroke();
             rect(this.startBar, yPosition - this.barWidth, this.data[i][this.xAxisValue] * this.scaler, this.barWidth);
@@ -98,13 +104,17 @@ class HorizontalBarChart {
         noFill();
         stroke(this.tickColour);
         strokeWeight(this.tickStrokeWeight);
+        //calculates gap between ticks by dividing chart width by set number of ticks
         let tickGap = this.chartWidth / this.numTicks;
 
         for (let i = 0; i <= this.numTicks; i++) {
+            //calculates x axis position for ticks by dividing max value by number of ticks, rounds to full number using to.Fixed(0)
             let tickValue = (i * (max(this.data.map(row => row[this.xAxisValue])) / this.numTicks)).toFixed(0);
+            //draws ticks on x-axis
             line(i * tickGap, 0, i * tickGap, this.tickStrokeLength);
             textAlign(CENTER, CENTER);
             textSize(15);
+            //sets fill colour for ticks
             fill(255, 233, 34);
             text(tickValue, i * tickGap, this.tickPadding + this.tickStrokeLength);
         }
