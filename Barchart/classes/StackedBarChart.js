@@ -35,6 +35,7 @@ class StackedBarChart {
         this.tickTextColour = obj.tickTextColour;
         this.tickTextSize = obj.tickTextSize || 50;
 
+        //Maps elements of possession and goals
         this.possession = this.data.map(el => el.Possession); 
         this.goals = this.data.map(el => el.Goals); 
 
@@ -48,7 +49,7 @@ class StackedBarChart {
 
         //colours
         this.axisColour = color(13, 13, 11);
-        //Possession (235, 247, 10) Yellow -> Goals 
+        //Possession (235, 247, 10) Yellow -> Goals (255, 21, 21) Red
         this.barColours = [color(235, 247, 10), color(255, 21, 21)];
         this.axisTextColour = color(0, 0, 0);
     }
@@ -63,11 +64,13 @@ class StackedBarChart {
         textAlign(CENTER, CENTER);
         text(this.titleLabel, this.chartPosX + this.chartWidth / 2, this.chartPosY - this.chartHeight - 40);
 
+        //positions chart
         push();
         translate(this.chartPosX, this.chartPosY);
         noFill();
         stroke(this.axisColour);
         strokeWeight(this.axisThickness);
+        //draws the axis
         line(0, 0, 0, -this.chartHeight); 
         line(0, 0, this.chartWidth, 0); 
 

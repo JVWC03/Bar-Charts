@@ -36,7 +36,7 @@ class PieChart {
         this.cornersArray.forEach(item => this.total = this.total + item);
  
         //sets the start of the angle to 0       
-        this.angleStart = 0;
+        this.startAngle = 0;
         //start tracking angle from 0
         this.trackAngle = 0;
        
@@ -63,10 +63,10 @@ class PieChart {
             //find the end of eachslice
             let angleEnd = (this.cornersArray[i] / this.total) * 360;
             //draw each pie chart slice
-            arc(0, 0, 600, 600, this.angleStart, angleEnd, PIE);
+            arc(0, 0, 600, 600, this.startAngle, angleEnd, PIE);
             
             //calculate middle angle for text in slices
-            let middleAngle = (angleEnd-this.angleStart)/2;
+            let middleAngle = (angleEnd-this.startAngle)/2;
             //find x and y text positions
             let xPosition = 150*cos(middleAngle);
             let yPosition = 150*sin(middleAngle)
@@ -88,7 +88,7 @@ class PieChart {
            
             //align text
             textAlign(LEFT,CENTER)
-            textSize(15)
+            textSize(17)
             text(this.data[i][this.xAxisValue], 0, 0);
  
             pop()
